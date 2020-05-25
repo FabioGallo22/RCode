@@ -34,7 +34,7 @@ intThree
 
 dataForChart = c(length(intOne$len), length(intTwo$len), length(intThree$len))
 names(dataForChart) = c("<10","10-20",">20")
-pie(dataForChart, main = "Tooth lengths considering three value intervals")
+pie(dataForChart, main = "Tooth lengths considering three value intervals") # Output is shown in file "Tooth Lengths Intervals.png"
 
 
 #_________________________
@@ -64,7 +64,7 @@ pie(WeightMean,col=PieColor, main="Mean Weight by group")
 ######################################
 # Ejercicio 8 ########################
 ######################################
-# Ejercicio 8. "iris" es un conjunto de datos de R, que contiene distintas caracterÌsticas de las plantas
+# Ejercicio 8. "iris" es un conjunto de datos de R, que contiene distintas caracter√≠sticas de las plantas
 # pertenecientes a la familia con ese nombre. A partir de los datos almacenados el en dataset "iris"
 # escribir expresiones para:
 
@@ -81,8 +81,8 @@ head(iris)
 
 
 # a. Generar un objeto llamado longPetalos con los promedios de
-# longitud de pÈtalo (Petal.Width) agrupados por especie (Species)
-# (usar tapply()). Debe quedar asÌ:  <un gr·fito>
+# longitud de p√©talo (Petal.Width) agrupados por especie (Species)
+# (usar tapply()). Debe quedar as√≠:  <un gr√°fito>
 nuevo = na.omit(iris) # no elimina ningunra porque no es necesario
 longPetalos=tapply(nuevo$Petal.Width,nuevo$Species,mean)
 longPetalos
@@ -91,18 +91,18 @@ longPetalos
 # 1.462      4.260      5.552
 
 
-# b. Generar un gr·fico de torta como el que se muestra a continuaciÛn
+# b. Generar un gr√°fico de torta como el que se muestra a continuaci√≥n
 # representando los valores almacenados en el objeto longPetalos. 
 colores=c(9,450,503)
 names(longPetalos)=c("setosa","versicolor","virginica")
-pie(longPetalos,col=colores,main="Longitud promedio de pÈtalos por especie")
+pie(longPetalos,col=colores,main="Longitud promedio de p√©talos por especie")
 
 
 
 ######################################
 # Ejercicio 9 ########################
 ######################################
-# Ejercicio 9. Cargue el dataset airquality y analice la informaciÛn contenida en el mismo. Luego escriba
+# Ejercicio 9. Cargue el dataset airquality y analice la informaci√≥n contenida en el mismo. Luego escriba
 # expresiones para:
 datasets::airquality
 head(airquality)
@@ -132,7 +132,7 @@ cantTempMayores75
 datosJunio = subset(airquality, airquality[,5]==6)
 datosJunio
 
-# c. Generar un subconjunto con los datos correspondientes a los primeros 15 dÌas del mes de
+# c. Generar un subconjunto con los datos correspondientes a los primeros 15 d√≠as del mes de
 # agosto.
 datosAgosto15dias = subset(airquality, airquality[,5]==8)[1:15,]
 datosAgosto15dias
@@ -142,16 +142,16 @@ promTemp = tapply(airquality$Temp, airquality$Month, mean)
 promTemp
 
 # e. Ilustrar la frecuencia de valores de temperaturas en un histograma como se muestra a
-# continuaciÛn.
+# continuaci√≥n.
 coloresHist = c(9,450,503)
 hist(airquality[,4], freq = T, border = "black", xlim = c(55,100),
      xlab = "Temperatura", ylab = "Frecuencia", cex.lab=0.75,
      main = "Frecuencia de temperaturas", cex.main=1.5, col = coloresHist)
 
 
-# Opcional: Buscar en la web si existe en R una funciÛn para convertir de grados Farenheit a
+# Opcional: Buscar en la web si existe en R una funci√≥n para convertir de grados Farenheit a
 # grados Celsius.
-# En caso de encontrarla, genere el gr·fico con la temperatura en grados Celsius.
+# En caso de encontrarla, genere el gr√°fico con la temperatura en grados Celsius.
 
 # https://www.stat.berkeley.edu/~s133/R-1a.html
 #       C = 5/9 (F - 32)
