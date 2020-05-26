@@ -1,3 +1,6 @@
+######################################
+### Dataset ToothGrowth ##############
+######################################
 # Analyze the information of the ToothGrowth data in the R datasets package.
 # Then, define an expression to obtain the tooths' mean size with a dosis of 0.5 mg, group by the supplement type (VC or OJ).
 
@@ -34,10 +37,11 @@ intThree
 
 dataForChart = c(length(intOne$len), length(intTwo$len), length(intThree$len))
 names(dataForChart) = c("<10","10-20",">20")
-pie(dataForChart, main = "Tooth lengths considering three value intervals") # Output is shown in file "Tooth Lengths Intervals.png"
+pie(dataForChart, main = "Tooth lengths considering three value intervals") # Output is shown in file "ToothGrowth_ToothLengthsIntervals.png"
 
-
-#_________________________
+######################################
+### Dataset PlantGrowth ##############
+######################################
 # The dataset PlantGrowth contains the daily plant growth for 3 treatments repeated on 10 years.
 # First, analyze its information.
 datasets::PlantGrowth
@@ -52,22 +56,25 @@ head(PlantGrowth)
 ?
 
 # a. Define an expression for calculating the weight mean of each group using tapply().
-cleanData=na.omit(PlantGrowth) # For omitting null values.
-WeightMean=tapply(cleanData$weight, cleanData$group, mean)
+cleanData = na.omit(PlantGrowth) # For omitting null values.
+WeightMean = tapply(cleanData$weight, cleanData$group, mean)
 WeightMean
+# Output: 	ctrl  trt1  trt2 
+#			5.032 4.661 5.526
+
 
 # b. Represent the information from item 'a' with a pie chart.
 names(WeightMean)=c("Control","Traitement1","Traitement2")
 PieColor=c(9,450,503)
-pie(WeightMean,col=PieColor, main="Mean Weight by group")
+pie(WeightMean,col=PieColor, main="Mean Weight by group") # Output is shown in file PlantGrowth_MeanWeightByGroup.png
 
 ######################################
-# Ejercicio 8 ########################
+### Dataset Iris #####################
 ######################################
-# Ejercicio 8. "iris" es un conjunto de datos de R, que contiene distintas características de las plantas
-# pertenecientes a la familia con ese nombre. A partir de los datos almacenados el en dataset "iris"
-# escribir expresiones para:
-
+# The Iris data set gives the measurements in centimeters of the variables sepal length and width and
+# petal length and width, respectively, for 50 flowers from each of 3 species of iris. 
+# The species are Iris setosa, versicolor, and virginica.
+# Show dataset structure information.
 datasets::iris
 head(iris)
 # Sepal.Length Sepal.Width Petal.Length Petal.Width Species
@@ -80,29 +87,26 @@ head(iris)
 ?iris
 
 
-# a. Generar un objeto llamado longPetalos con los promedios de
-# longitud de pétalo (Petal.Width) agrupados por especie (Species)
-# (usar tapply()). Debe quedar así:  <un gráfito>
-nuevo = na.omit(iris) # no elimina ningunra porque no es necesario
-longPetalos=tapply(nuevo$Petal.Width,nuevo$Species,mean)
-longPetalos
-# > longPetalos
-# setosa versicolor  virginica 
-# 1.462      4.260      5.552
+# a. Generate an object called 'PetalLength' to save the 
+# mean of petal length group by species (use tapply function).
+cleanData = na.omit(iris) # no elimina ninguna porque no es necesario
+petalLength=tapply(cleanData$Petal.Width,cleanData$Species,mean)
+petalLength 	# Output
+				# setosa versicolor  virginica 
+				# 0.246      1.326      2.026
 
 
-# b. Generar un gráfico de torta como el que se muestra a continuación
-# representando los valores almacenados en el objeto longPetalos. 
-colores=c(9,450,503)
-names(longPetalos)=c("setosa","versicolor","virginica")
-pie(longPetalos,col=colores,main="Longitud promedio de pétalos por especie")
-
+# b. Generate a pie chart to show the petal mean length group by specie. 
+# i.e., show the 'petalLength' values from the previous item. 
+chartColor=c(9,450,503)
+names(petalLength)=c("setosa","versicolor","virginica")
+pie(petalLength,col=chartColor,main="Petal Mean Length group by specie")  # Output is shown in file Iris_PetalMeanWeightBySpecie.png
 
 
 ######################################
-# Ejercicio 9 ########################
+### Dataset Airquality ###############
 ######################################
-# Ejercicio 9. Cargue el dataset airquality y analice la información contenida en el mismo. Luego escriba
+# Ejercicio 9. Cargue el dataset airquality y analice la informaci�n contenida en el mismo. Luego escriba
 # expresiones para:
 datasets::airquality
 head(airquality)
@@ -132,7 +136,7 @@ cantTempMayores75
 datosJunio = subset(airquality, airquality[,5]==6)
 datosJunio
 
-# c. Generar un subconjunto con los datos correspondientes a los primeros 15 días del mes de
+# c. Generar un subconjunto con los datos correspondientes a los primeros 15 d�as del mes de
 # agosto.
 datosAgosto15dias = subset(airquality, airquality[,5]==8)[1:15,]
 datosAgosto15dias
@@ -142,16 +146,16 @@ promTemp = tapply(airquality$Temp, airquality$Month, mean)
 promTemp
 
 # e. Ilustrar la frecuencia de valores de temperaturas en un histograma como se muestra a
-# continuación.
+# continuaci�n.
 coloresHist = c(9,450,503)
 hist(airquality[,4], freq = T, border = "black", xlim = c(55,100),
      xlab = "Temperatura", ylab = "Frecuencia", cex.lab=0.75,
      main = "Frecuencia de temperaturas", cex.main=1.5, col = coloresHist)
 
 
-# Opcional: Buscar en la web si existe en R una función para convertir de grados Farenheit a
+# Opcional: Buscar en la web si existe en R una funci�n para convertir de grados Farenheit a
 # grados Celsius.
-# En caso de encontrarla, genere el gráfico con la temperatura en grados Celsius.
+# En caso de encontrarla, genere el gr�fico con la temperatura en grados Celsius.
 
 # https://www.stat.berkeley.edu/~s133/R-1a.html
 #       C = 5/9 (F - 32)
